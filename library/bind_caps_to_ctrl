@@ -1,3 +1,6 @@
+#!/usr/bin/ruby
+# WANT_JSON
+
 require 'rubygems'
 require 'json'
 
