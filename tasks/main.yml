@@ -6,7 +6,7 @@
   gem: name=CFPropertyList state=present
 
 - name: bind caps lock to ctrl
-- action: bind_caps_to_ctrl
+- bind_caps_to_ctrl: state=present
 
 - name: Ensure osx configuration
   osx_write: domain={{ item.domain }} key={{ item.key }} value={{ item.value }}

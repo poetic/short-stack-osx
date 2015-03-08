@@ -4,17 +4,21 @@
 require 'rubygems'
 require 'json'
 
-response  = {'changed' => false}
+File.open(ARGV[0]) do |fh|
 
-keyboard_ids = 'ioreg -n IOHIDKeyboard -r | grep -E \'VendorID"|ProductID\' | awk \'{ print $4 }\' | paste -s -d\'-\n\' -'
+  response  = {'changed' => false}
 
-check = 'xargs -I{} sh -c \'defaults -currentHost read -g "com.apple.keyboard.modifiermapping.{}-0" | grep "Dst = 2" > /dev/null\''
+  keyboard_ids = 'ioreg -n IOHIDKeyboard -r | grep -E \'VendorID"|ProductID\' | awk \'{ print $4 }\' | paste -s -d\'-\n\' -'
 
-remap = 'xargs -I{} defaults -currentHost write -g "com.apple.keyboard.modifiermapping.{}-0" -array "<dict><key>HIDKeyboardModifierMappingDst</key><integer>2</integer><key>HIDKeyboardModifierMappingSrc</key><integer>0</integer></dict>"'
+  check = 'xargs -I{} sh -c \'defaults -currentHost read -g "com.apple.keyboard.modifiermapping.{}-0" | grep "Dst = 2" > /dev/null\''
 
-unless `#{keyboard_ids} | #{check}`
-  `#{keyboard_ids} | #{remap}`
-  response['changed'] = true
+  remap = 'xargs -I{} defaults -currentHost write -g "com.apple.keyboard.modifiermapping.{}-0" -array "<dict><key>HIDKeyboardModifierMappingDst</key><integer>2</integer><key>HIDKeyboardModifierMappingSrc</key><integer>0</integer></dict>"'
+
+  unless `#{keyboard_ids} | #{check}`
+    `#{keyboard_ids} | #{remap}`
+    response['changed'] = true
+  end
+
+  print JSON.dump(response)
+
 end
-
-print JSON.dump(response)
