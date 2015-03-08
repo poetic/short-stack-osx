@@ -1,43 +1,12 @@
 ---
-# GlobalDomain type defaults
-#
-# A lot of these were taken from mitchty @
-# https://github.com/mitchty/bootstrap/blob/master/osx-user.yml
-# and others from multiple other places on the web.
-
-## Caps Lock Map
-
-- name: get internal usb keyboard vendor/product ids
-  shell: >
-    ioreg -n IOHIDKeyboard -r |
-    grep -E 'VendorID"|ProductID' |
-    awk '{print $4}' |
-    paste -s -d'-\n' -
-  register: kb_id
-  changed_when: false
-
-- name: read builtin keyboard map for caps lock setup
-  shell: >
-    defaults -currentHost read -g
-    "{{ kb_key }}.{{ kb_id.stdout }}-0" |
-    perl -pe 's/(\n|\s+|{|}|\(|\)|\=|\;)//g' |
-    perl -pe 's/HIDKeyboardModifierMapping//g'
-  register: current_layout
-  failed_when: no
-  changed_when: false
-
-- name: ensure builtin keyboard maps caps lock to control
-  shell: >
-    defaults -currentHost write -g
-    "{{ kb_key }}.{{ kb_id.stdout }}-0"
-    -array "{HIDKeyboardModifierMappingDst=2;HIDKeyboardModifierMappingSrc=0;}"
-  when: current_layout.stdout != "Dst2Src0"
-
 - name: ensure the ruby json gem is present
   gem: name=json state=present
 
 - name: ensure the ruby CFPropertyList gem is present
   gem: name=CFPropertyList state=present
+
+- name: bind caps lock to ctrl
+- action: bind_caps_to_ctrl
 
 - name: Ensure osx configuration
   osx_write: domain={{ item.domain }} key={{ item.key }} value={{ item.value }}
