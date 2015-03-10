@@ -1,26 +1,26 @@
 ---
 osx_default_settings:
-  - {key: airdrop_all_devices}
-  - {key: autohide_dock}
-  - {key: bind_caps_to_ctrl}
-  - {key: dock_show_hidden}
-  - {key: dont_write_to_network}
-  - {key: expanded_save_prompt}
-  - {key: extension_change_warning}
-  - {key: external_drives}
-  - {key: external_media}
-  - {key: external_servers}
-  - {key: hold_for_key_repeat}
-  - {key: initial_key_repeat}
-  - {key: key_repeat_speed}
-  - {key: new_app_prompt}
-  - {key: nightly_safari_start_page}
-  - {key: quit_finder}
-  - {key: safari_dev_menu}
-  - {key: safari_developer_extras}
-  - {key: show_all_extensions}
-  - {key: show_finder_status_bar}
-  - {key: software_update_frequency}
-  - {key: trackpad_right_click}
-  - {key: trackpad_tap_click}
-  - {key: volume_feedback}
+  - airdrop_all_devices
+  - autohide_dock
+  - bind_caps_to_ctrl
+  - dock_show_hidden
+  - dont_write_to_network
+  - expanded_save_prompt
+  - extension_change_warning
+  - external_drives
+  - external_media
+  - external_servers
+  - hold_for_key_repeat
+  - initial_key_repeat
+  - key_repeat_speed
+  - new_app_prompt
+  - nightly_safari_start_page
+  - quit_finder
+  - safari_dev_menu
+  - safari_developer_extras
+  - show_all_extensions
+  - show_finder_status_bar
+  - software_update_frequency
+  - trackpad_right_click
+  - trackpad_tap_click
+  - volume_feedback
