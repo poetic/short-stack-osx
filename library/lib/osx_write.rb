@@ -1,6 +1,3 @@
-#!/usr/bin/ruby
-# WANT_JSON
-
 module Plist
 
   require 'CFPropertyList'
@@ -29,6 +26,18 @@ module Plist
       new_plist.value = CFPropertyList.guess(data)
 
       new_plist.save(plist_path, CFPropertyList::List::FORMAT_BINARY)
+    end
+
+    def self.parse_value(value)
+      if value == 'true' || value == 'True' || value == 'yes'
+        true
+      elsif value ==  'false' || value == 'False' || value == 'no'
+        false
+      elsif (Integer(value) rescue false)
+        Integer(value)
+      else
+        value
+      end
     end
 
     private
@@ -63,32 +72,17 @@ module Plist
 
 end
 
-require 'rubygems'
-require 'json'
+#File.open(ARGV[0]) do |fh|
+  #data      = JSON.parse(fh.read)
+  #response  = {'changed' => true}
+  #value     = parse_value(data['value'])
+  #plist_set = Plist::Parser.new(data['domain'], data['key'], value)
 
-def parse_value(value)
-  if value == 'true' || value == 'True' || value == 'yes'
-    true
-  elsif value ==  'false' || value == 'False' || value == 'no'
-    false
-  elsif (Integer(value) rescue false)
-    Integer(value)
-  else
-    value
-  end
-end
+  #if plist_set.exists
+    #response['changed'] = false
+  #else
+    #plist_set.write
+  #end
 
-File.open(ARGV[0]) do |fh|
-  data      = JSON.parse(fh.read)
-  response  = {'changed' => true}
-  value     = parse_value(data['value'])
-  plist_set = Plist::Parser.new(data['domain'], data['key'], value)
-
-  if plist_set.exists
-    response['changed'] = false
-  else
-    plist_set.write
-  end
-
-  print JSON.dump(response)
-end
+  #print JSON.dump(response)
+#end

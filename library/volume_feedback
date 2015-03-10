@@ -1,0 +1,20 @@
+#!/usr/bin/ruby
+# WANT_JSON
+
+require 'rubygems'
+require 'json'
+require "#{File.expand_path('~')}/.short-stack/.galaxy/short-stack-osx/library/lib/osx_write"
+
+File.open(ARGV[0]) do |fh|
+  data       = JSON.parse(fh.read)
+  value      = data['value'] ? Plist::Parser.parse_value(data['value']) : 0
+  response   = {'changed' => false}
+  plist_set  = Plist::Parser.new('NSGlobalDomain', 'com.apple.sound.beep.feedback', value)
+
+  unless plist_set.exists
+    plist_set.write
+    response['changed'] = true
+  end
+
+  print JSON.dump(response)
+end

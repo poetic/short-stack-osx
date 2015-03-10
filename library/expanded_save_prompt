@@ -1,0 +1,26 @@
+#!/usr/bin/ruby
+# WANT_JSON
+
+require 'rubygems'
+require 'json'
+require "#{File.expand_path('~')}/.short-stack/.galaxy/short-stack-osx/library/lib/osx_write"
+
+File.open(ARGV[0]) do |fh|
+  data       = JSON.parse(fh.read)
+  value      = data['value'] ? Plist::Parser.parse_value(data['value']) : true
+  response   = {'changed' => false}
+  plist_set  = Plist::Parser.new('NSGlobalDomain', 'NSNavPanelExpandedStateForSaveMode', value)
+  plist_set2 = Plist::Parser.new('NSGlobalDomain', 'NSNavPanelExpandedStateForSaveMode2', value)
+
+  unless plist_set.exists
+    plist_set.write
+    response['changed'] = true
+  end
+
+  unless plist_set2.exists
+    plist_set2.write
+    response['changed'] = true
+  end
+
+  print JSON.dump(response)
+end

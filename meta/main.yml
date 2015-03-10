@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  author: Matthew Hager
+  author: Daniel Ochoa
   company: Poetic Systems
   description: Short Stack role that configures osx settings.
   license: MIT
