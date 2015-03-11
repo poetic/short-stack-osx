@@ -5,9 +5,5 @@
 - name: ensure the ruby CFPropertyList gem is present
   gem: name=CFPropertyList state=present
 
-- name: Ensure osx configuration
-  action: "{{ item }}"
-  with_items: osx_default_settings
-
 - name: add osx configuration to zsh
-  copy: src=osx.zsh dest={{ zshrc_d }}
+  copy: src=osx.zsh dest={{ stack_d }}
