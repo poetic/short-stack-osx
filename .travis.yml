@@ -16,9 +16,11 @@ before_script:
 script:
 - bash <(curl -s curl -L https://raw.githubusercontent.com/poetic/short-stack/master/install.sh) --skip-short-stack
 - bash short-stack
+- bash short-stack
 - >
   short-stack
-  | grep -q 'changed=0.*failed=0'
+
+  grep -q 'changed=0.*failed=0'
   && (echo 'Idempotence test: pass' && exit 0)
   || (echo 'Idempotence test: fail' && exit 1)
 
