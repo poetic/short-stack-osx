@@ -72,17 +72,3 @@ module Plist
 
 end
 
-#File.open(ARGV[0]) do |fh|
-  #data      = JSON.parse(fh.read)
-  #response  = {'changed' => true}
-  #value     = parse_value(data['value'])
-  #plist_set = Plist::Parser.new(data['domain'], data['key'], value)
-
-  #if plist_set.exists
-    #response['changed'] = false
-  #else
-    #plist_set.write
-  #end
-
-  #print JSON.dump(response)
-#end
