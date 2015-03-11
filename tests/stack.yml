@@ -3,7 +3,8 @@
   hosts: all
   roles:
     - core
-
+    - osx
+  tasks:
   - name: Ensure osx configuration
     action: "{{ item }}"
     with_items:
@@ -31,4 +32,3 @@
       - trackpad_right_click
       - trackpad_tap_click
       - volume_feedback
-
