@@ -9,7 +9,7 @@ File.open(ARGV[0]) do |fh|
   data       = JSON.parse(fh.read)
   value      = data['value'] ? Plist::Parser.parse_value(data['value']) : true
   response   = {'changed' => false}
-  plist_set  = Plist::Parser.new('NSGlobalDomain', 'NSNavPanelExpandedStateForSaveMode', value)
+  plist_set  = Plist::Parser.new('NSGlobalDomain', 'NSNavPanelExpandedStateForSaveMode2', value)
 
   unless plist_set.exists
     plist_set.write
