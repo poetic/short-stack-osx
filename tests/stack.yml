@@ -15,6 +15,7 @@
       - dock_show_hidden
       - dont_write_to_network
       - expanded_save_prompt
+      - expanded_save_prompt_alt
       - extension_change_warning
       - external_drives
       - external_media
