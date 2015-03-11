@@ -3,7 +3,7 @@
 
 require 'rubygems'
 require 'json'
-require "#{File.expand_path('~')}/.short-stack/.galaxy/short-stack-osx/library/lib/osx_write"
+require "#{File.expand_path('~')}/.short-stack/.galaxy/osx/library/lib/osx_write"
 
 File.open(ARGV[0]) do |fh|
   data      = JSON.parse(fh.read)
