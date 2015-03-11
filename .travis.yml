@@ -16,7 +16,6 @@ before_script:
 script:
 - bash <(curl -s curl -L https://raw.githubusercontent.com/poetic/short-stack/master/install.sh) --skip-short-stack
 - bash short-stack
-- bash short-stack
 - >
   short-stack
 
