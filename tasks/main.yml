@@ -5,6 +5,6 @@
 - name: ensure the ruby CFPropertyList gem is present
   gem: name=CFPropertyList state=present
 
-- name: ensure zsh osx config exists
+- name: ensure osx zsh configuration exists
   copy: src=osx.zsh dest={{ stack_d }}
   when: "'zsh' in role_names"
