@@ -5,8 +5,7 @@
     - core
     - osx
   tasks:
-
-  - name: Ensure osx configuration
+  - name: ensure osx configuration
     action: "{{ item }}"
     with_items:
       - airdrop_all_devices
@@ -35,5 +34,5 @@
       - trackpad_tap_click
       - volume_feedback
 
-  - name: run an individual osx config module with a specific value
+  - name: ensure osx configuration with a specific value
     initial_key_repeat: value=6

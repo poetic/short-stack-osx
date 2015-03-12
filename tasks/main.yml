@@ -7,3 +7,4 @@
 
 - name: ensure zsh osx config exists
   copy: src=osx.zsh dest={{ stack_d }}
+  when: "'zsh' in role_names"

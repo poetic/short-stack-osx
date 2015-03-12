@@ -2,7 +2,7 @@
 galaxy_info:
   author: Daniel Ochoa
   company: Poetic Systems
-  description: Short Stack role that configures osx settings.
+  description: Configures OS X settings.
   license: MIT
   min_ansible_version: 1.8
   platforms:

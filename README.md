@@ -1,7 +1,8 @@
 Short Stack: OS X
 =================
 [![Build Status](https://travis-ci.org/poetic/short-stack-osx.svg)](https://travis-ci.org/poetic/short-stack-osx)
-Configures osx settings.
+
+Configures OS X settings.
 
 Requirements
 ------------
