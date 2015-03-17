@@ -33,6 +33,9 @@
       - trackpad_right_click
       - trackpad_tap_click
       - volume_feedback
+    notify:
+      - restart dock
+      - restart finder
 
   - name: ensure osx configuration with a specific value
     initial_key_repeat: value=6
