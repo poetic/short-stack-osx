@@ -7,7 +7,7 @@ require "#{File.expand_path('~')}/.short-stack/.galaxy/osx/library/lib/osx_write
 
 File.open(ARGV[0]) do |fh|
   data       = JSON.parse(fh.read)
-  value      = data['value'] ? Plist::Parser.parse_value(data['value']) : true
+  value      = Plist::Parser.parse_value(data['value'], true)
   response   = {'changed' => false}
   plist_set  = Plist::Parser.new('NSGlobalDomain', 'NSNavPanelExpandedStateForSaveMode', value)
 

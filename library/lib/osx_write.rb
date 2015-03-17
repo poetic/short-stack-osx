@@ -28,7 +28,7 @@ module Plist
       new_plist.save(plist_path, CFPropertyList::List::FORMAT_BINARY)
     end
 
-    def self.parse_value(value)
+    def self.parse_value(value, default)
       if value == 'true' || value == 'True' || value == 'yes'
         true
       elsif value ==  'false' || value == 'False' || value == 'no'
@@ -36,7 +36,7 @@ module Plist
       elsif (Integer(value) rescue false)
         Integer(value)
       else
-        value
+        default
       end
     end
 

@@ -8,7 +8,7 @@ require "#{File.expand_path('~')}/.short-stack/.galaxy/osx/library/lib/osx_write
 File.open(ARGV[0]) do |fh|
   data      = JSON.parse(fh.read)
   response  = {'changed' => false}
-  value     = data['value'] ? Plist::Parser.parse_value(data['value']) : true
+  value     = Plist::Parser.parse_value(data['value'], true)
   plist_set = Plist::Parser.new('com.apple.dock', 'showhidden', value)
 
   unless plist_set.exists
