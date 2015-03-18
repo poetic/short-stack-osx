@@ -3,17 +3,20 @@
 
 require 'rubygems'
 require 'json'
-require "#{File.expand_path('~')}.short-stack/.galaxy/osx/library/lib/osx_write"
+
+plist = 'com.apple.dock'
+key   = 'autohide-delay'
 
 File.open(ARGV[0]) do |fh|
-  data      = JSON.parse(fh.read)
-  response  = {'changed' => false}
-  value     = Plist::Parser.parse_value(data['value'], 0)
-  plist_set = Plist::Parser.new('com.apple.dock', 'autohide-delay', value)
 
-  unless plist_set.exists
-    plist_set.write
-    response['changed'] = true
+  data           = JSON.parse(fh.read)
+  data[:value] ||= '0'
+  plist_read     = `defaults read #{plist} #{key}`
+  response       = {changed: false}
+
+  if plist_read.split.join != data[:value]
+    `defaults write #{plist} #{key} -int #{data[:value]}`
+    response[:changed] = true
   end
 
   print JSON.dump(response)
