@@ -7,7 +7,6 @@ before_install:
 install:
 - sudo pip install ansible --quiet
 - gem install json
-- gem install CFPropertyList
 
 before_script:
 - cp tests/stack.yml ~/.stack.yml

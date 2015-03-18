@@ -4,13 +4,14 @@
 require 'rubygems'
 require 'json'
 
-plist = 'com.apple.dock'
-key   = 'autohide'
+plist   = 'com.apple.dock'
+key     = 'autohide'
+default = 'true'
 
 File.open(ARGV[0]) do |fh|
 
   data           = JSON.parse(fh.read)
-  data[:value] ||= 'true'
+  data[:value] ||= default
   read_value     = data[:value] =~ /true/i ? '1' : '0'
   plist_read     = `defaults read #{plist} #{key}`
   response       = {changed: false}

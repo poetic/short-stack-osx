@@ -2,8 +2,5 @@
 - name: ensure the ruby json gem is present
   gem: name=json state=present
 
-- name: ensure the ruby CFPropertyList gem is present
-  gem: name=CFPropertyList state=present
-
 - name: ensure osx zsh configuration exists
   copy: src=osx.zsh dest={{ stack_d }}
