@@ -1,24 +1,19 @@
-#!/usr/bin/ruby
-# WANT_JSON
+#!/bin/bash
 
-require 'rubygems'
-require 'json'
+# Exit immediately on error
+set -e
 
-plist   = 'NSGlobalDomain'
-key     = 'InitialKeyRepeat'
-default = '8'
+# Get params
+#source ${1}
 
-File.open(ARGV[0]) do |fh|
+# Set defaults
+value=${value:-6}
 
-  data           = JSON.parse(fh.read)
-  data[:value] ||= default
-  plist_read     = `defaults read #{plist} #{key}`
-  response       = {changed: false}
+if [[ $(defaults read -g InitialKeyRepeat) == $value ]]; then
+  echo '{"changed":false}'
+else
+  defaults write -g InitialKeyRepeat -int $value
+  echo '{"changed":true, "msg":"OK"}'
+fi
 
-  if plist_read.split.join != data[:value]
-    `defaults write #{plist} #{key} -int #{data[:value]}`
-    response[:changed] = true
-  end
-
-  print JSON.dump(response)
-end
+exit 0
