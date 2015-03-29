@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Exit immediately on error
+set -e
+
+# Get params
+#source ${1}
+
+# Set defaults
+value=${value:-1}
+
+if [[ $(defaults read -g KeyRepeat) == $value ]]; then
+  echo '{"changed":false}'
+else
+  defaults write -g KeyRepeat -int $value
+  echo '{"changed":true, "msg":"OK"}'
+fi
+
+exit 0
