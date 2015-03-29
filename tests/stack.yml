@@ -21,7 +21,7 @@
       - external_servers
       - hold_for_key_repeat
       - initial_key_repeat
-      - key_repeat_speed
+      - key_repeat
       - new_app_prompt
       - nightly_safari_start_page
       - quit_finder
