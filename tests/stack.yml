@@ -17,6 +17,3 @@
     notify:
       - restart dock
       - restart finder
-
-  - name: ensure osx configuration with a specific value
-    initial_key_repeat: value=8
