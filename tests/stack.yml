@@ -8,31 +8,9 @@
   - name: ensure osx configuration
     action: "{{ item }}"
     with_items:
-      - airdrop_all_devices
-      - autohide_dock
-      - bind_caps_to_ctrl
-      - dock_show_hidden
-      - dont_write_to_network
-      - expanded_save_prompt
-      - expanded_save_prompt_alt
-      - extension_change_warning
-      - external_drives
-      - external_media
-      - external_servers
-      - hold_for_key_repeat
-      - initial_key_repeat
-      - key_repeat
-      - new_app_prompt
-      - nightly_safari_start_page
-      - quit_finder
-      - safari_dev_menu
-      - safari_developer_extras
-      - show_all_extensions
-      - show_finder_status_bar
-      - software_update_frequency
-      - trackpad_right_click
-      - trackpad_tap_click
-      - volume_feedback
+      - initial_key_repeat_delay
+      - key_repeat_rate
+      - repeat_on_keydown
     notify:
       - restart dock
       - restart finder

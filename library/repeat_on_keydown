@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Exit immediately on error
+set -e
+
+# Get params
+source ${1}
+
+# Set defaults
+value=${value:-true}
+
+# Invert since this is disabling press and hold, not enabling repeat
+if [[ $value == true ]]; then
+  value=false
+  intValue=0
+else
+  value=true
+  intValue=1
+fi
+
+if [[ $(defaults read -g ApplePressAndHoldEnabled) == $intValue ]]; then
+  echo '{"changed":false}'
+else
+  defaults write -g ApplePressAndHoldEnabled -bool $value
+  echo '{"changed":true, "msg":"OK"}'
+fi
+
+exit 0
