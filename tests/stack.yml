@@ -8,9 +8,10 @@
   - name: ensure osx configuration
     action: "{{ item }}"
     with_items:
-      - initial_key_repeat_delay
-      - key_repeat_rate
-      - repeat_on_keydown
+      - keyboard_initial_key_repeat_delay
+      - keyboard_key_repeat_rate
+      - keyboard_repeat_on_keydown
+      - finder_show_path_bar
     notify:
       - restart dock
       - restart finder
