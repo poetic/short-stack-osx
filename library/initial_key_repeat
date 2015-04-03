@@ -4,7 +4,7 @@
 set -e
 
 # Get params
-#source ${1}
+source ${1}
 
 # Set defaults
 value=${value:-6}
