@@ -12,6 +12,7 @@
       - keyboard_key_repeat_rate
       - keyboard_repeat_on_keydown
       - finder_show_path_bar
+      - finder_show_status_bar
     notify:
       - restart dock
       - restart finder
