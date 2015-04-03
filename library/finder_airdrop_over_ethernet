@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Exit immediately on error
+set -e
+
+# Get params
+source ${1}
+
+# Set defaults
+value=${value:-true}
+intValue=1
+
+if [[ $value == false ]]; then
+  intValue=0
+fi
+
+if [[ $(defaults read com.apple.NetworkBrowser BrowseAllInterfaces) == $intValue ]]; then
+  echo '{"changed":false}'
+else
+  defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool $value
+  echo '{"changed":true, "msg":"OK"}'
+fi
+
+exit 0

@@ -13,6 +13,7 @@
       - keyboard_repeat_on_keydown
       - finder_show_path_bar
       - finder_show_status_bar
+      - finder_airdrop_over_ethernet
     notify:
       - restart dock
       - restart finder
